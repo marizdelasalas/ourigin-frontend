@@ -1,0 +1,180 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Breakpoints follow the Ourigin design proposal instead of Tailwind's defaults.
+ *   base  ≤700px  bottom tab bar, single column (feed first)
+ *   md    ≥701px  labelled sidebar, context rail beside the feed
+ *   lg    ≥1151px full desktop spacing
+ *   2xl   ≥1500px wide desktop
+ * sm and xl carry over smaller tweaks from the original prototype.
+ */
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 40.6875rem; /* 651px */
+  --breakpoint-md: 43.8125rem; /* 701px */
+  --breakpoint-lg: 71.9375rem; /* 1151px */
+  --breakpoint-xl: 84.4375rem; /* 1351px */
+  --breakpoint-2xl: 93.75rem; /* 1500px */
+
+  --shadow-frame: 0 30px 80px #075e6314;
+  --shadow-card: 0 6px 23px #075e6305;
+  --shadow-soft: 0 4px 14px #075e6305;
+  --shadow-medal: 0 8px 20px #075e6315;
+  --shadow-dock: 0 -5px 25px #075e6309;
+  --shadow-dialog: 0 20px 80px #172b3525;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-manrope), var(--font-inter), ui-sans-serif, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Ourigin brand and product tokens */
+  --color-brand-turquoise: var(--brand-turquoise);
+  --color-brand-overlap: var(--brand-overlap);
+  --color-brand-sea: var(--brand-sea);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-divider: var(--divider);
+  --color-tile: var(--tile);
+  --color-chip: var(--chip);
+  --color-nav-icon: var(--nav-icon);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-card: 21px;
+  --radius-tile: 13px;
+  --radius-control: 12px;
+}
+
+/* Values come from the Ourigin identity proposal (03 / Color palette). */
+:root {
+  --radius: 0.625rem;
+
+  --brand-deep-teal: #075e63;
+  --brand-turquoise: #2cbdb3;
+  --brand-overlap: #128d89;
+  --brand-sea: #2fa8a0;
+  --brand-ink: #172b35;
+  --brand-muted: #647680;
+  --brand-border: #d9e3e5;
+
+  --background: #eff5f3;
+  --foreground: var(--brand-ink);
+  --card: #ffffff;
+  --card-foreground: var(--brand-ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--brand-ink);
+  --primary: var(--brand-deep-teal);
+  --primary-foreground: #ffffff;
+  --secondary: #f3f7f5;
+  --secondary-foreground: var(--brand-ink);
+  --muted: #f3f7f5;
+  --muted-foreground: var(--brand-muted);
+  --accent: #e9f3ef;
+  --accent-foreground: var(--brand-deep-teal);
+  --destructive: #c94444;
+  --border: var(--brand-border);
+  --input: var(--brand-border);
+  --ring: #4d78c9;
+
+  --chart-1: var(--brand-deep-teal);
+  --chart-2: #4d78c9;
+  --chart-3: #8a6bc1;
+  --chart-4: #d89a39;
+  --chart-5: #d97869;
+
+  --sidebar: rgb(255 255 255 / 0.85);
+  --sidebar-foreground: var(--brand-ink);
+  --sidebar-primary: var(--brand-deep-teal);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e0f0ec;
+  --sidebar-accent-foreground: var(--brand-deep-teal);
+  --sidebar-border: #dce8e2;
+  --sidebar-ring: #4d78c9;
+
+  --success: #24864b;
+  --warning: #a86508;
+  --info: #2865b4;
+
+  --divider: #ecf2ef;
+  --tile: #f1f7f4;
+  --chip: #eaf4ef;
+  --nav-icon: #168d88;
+
+  /* Toasts clear the phone tab bar (65px + safe area). */
+  --toast-offset: calc(77px + env(safe-area-inset-bottom));
+
+  @variant md {
+    --toast-offset: 25px;
+  }
+}
+
+/* The soft backdrop behind the framed workplace on tablet and desktop. */
+@utility bg-backdrop {
+  background:
+    radial-gradient(ellipse at 10% 0%, #9bc9c4 0, transparent 55%),
+    radial-gradient(ellipse at 95% 80%, #dce7d7 0, transparent 60%),
+    linear-gradient(140deg, #b6d6d1, #deeae6 65%, #cee4de);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-[12px] leading-[1.45] text-foreground;
+  }
+  :where(a, button, input, textarea):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
