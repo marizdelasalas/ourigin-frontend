@@ -12,26 +12,32 @@ const sections = navigation
   .flatMap((group) => group.items)
   .filter((item) => item.href !== "/")
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      Component: RootLayout,
+      children: [
+        {
+          Component: WorkplaceLayout,
+          children: [
+            {
+              index: true,
+              Component: HomePage,
+              handle: { title: "Home" } satisfies RouteHandle,
+            },
+            ...sections.map((section) => ({
+              path: section.href,
+              element: <SectionPage section={section} />,
+              handle: { title: section.label } satisfies RouteHandle,
+            })),
+          ],
+        },
+        { path: "*", Component: NotFoundPage },
+      ],
+    },
+  ],
   {
-    Component: RootLayout,
-    children: [
-      {
-        Component: WorkplaceLayout,
-        children: [
-          {
-            index: true,
-            Component: HomePage,
-            handle: { title: "Home" } satisfies RouteHandle,
-          },
-          ...sections.map((section) => ({
-            path: section.href,
-            element: <SectionPage section={section} />,
-            handle: { title: section.label } satisfies RouteHandle,
-          })),
-        ],
-      },
-      { path: "*", Component: NotFoundPage },
-    ],
-  },
-])
+    // Vite's `base`: `/` locally, `/ourigin-frontend/` on GitHub Pages.
+    basename: import.meta.env.BASE_URL,
+  }
+)

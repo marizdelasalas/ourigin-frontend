@@ -49,9 +49,28 @@ To see the phone layout in a desktop browser, make the window narrower than
 
 ## Deploying
 
-`dist/` is a static site. Serve it from any static host and configure an
-**SPA fallback**: every path that isn't a file must return `dist/index.html`,
-so that a direct visit to `/inbox` works.
+The app is published on GitHub Pages at
+<https://marizdelasalas.github.io/ourigin-frontend/>
+([ADR-0019](decisions/0019-github-pages-for-the-public-preview.md)). Every push
+to `main` deploys it: the **Deploy to GitHub Pages** workflow
+(`.github/workflows/deploy-pages.yml`) lints, builds and publishes `dist/`. A
+run takes about a minute; follow it in the repository's **Actions** tab. To
+redeploy without a code change, use **Run workflow** there.
+
+- **Base path:** the workflow builds with `BASE_PATH=/ourigin-frontend/`, which
+  sets Vite's `base` and the router's `basename`. Locally both are `/`. Don't
+  hard-code root paths in code: import assets and link with React Router.
+- **SPA fallback:** GitHub Pages has no rewrites, so the workflow copies
+  `index.html` to `404.html`. A direct visit to `/ourigin-frontend/inbox` opens
+  the page, with an HTTP 404 status.
+- **Checking the Pages build locally:** run
+  `BASE_PATH=/ourigin-frontend/ npm run build`, then
+  `BASE_PATH=/ourigin-frontend/ npm run preview`, and open the URL it prints
+  (<http://localhost:4173/ourigin-frontend/> by default).
+
+On another host, `dist/` is still a static site. Build without `BASE_PATH` (or
+with the host's sub-path) and configure an **SPA fallback**: every path that
+isn't a file must return `dist/index.html`.
 
 ## Troubleshooting
 

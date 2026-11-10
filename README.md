@@ -9,6 +9,9 @@ other sections are placeholder routes for now.
 shadcn/ui on Radix · Atomic Design. It's a frontend-only single-page app with
 mock data. The API (NestJS and PostgreSQL) will be a separate service.
 
+**Live preview:** <https://marizdelasalas.github.io/ourigin-frontend/>, deployed
+from `main` by GitHub Actions ([deploying](docs/getting-started.md#deploying)).
+
 ## Quick start
 
 Requires Node.js 22.22 or newer.
@@ -46,6 +49,7 @@ The living documentation is in [`docs/`](docs/README.md):
 ## Project layout
 
 ```
+.github/workflows/    Deploy to GitHub Pages on every push to main
 docs/                 Living documentation
 index.html            HTML entry: meta tags, icons, #root
 public/               App icons, served as-is

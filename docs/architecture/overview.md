@@ -101,6 +101,7 @@ flowchart TD
 │   │   └── data/                 Data access layer and fixtures
 │   └── types/                    Domain types
 ├── index.html                    HTML entry and document metadata
+├── .github/workflows/            Deploy to GitHub Pages (deploy-pages.yml)
 ├── components.json               shadcn configuration
 ├── eslint.config.js
 ├── vite.config.ts

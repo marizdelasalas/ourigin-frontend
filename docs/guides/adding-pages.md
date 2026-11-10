@@ -101,4 +101,7 @@ route is hidden ([why](../architecture/state-and-data.md#route-preservation)).
 
 The app is a single-page application. The host must answer every unknown path
 with `index.html` (often called an SPA fallback or rewrite). Otherwise a direct
-visit to `/inbox` returns the host's own 404.
+visit to `/inbox` returns the host's own 404. On GitHub Pages the deploy
+workflow's `404.html` copy does this, and the app lives under
+`/ourigin-frontend/`, so always link with React Router (`Link`, `navigate`),
+never a plain `<a href="/...">` ([deploying](../getting-started.md#deploying)).

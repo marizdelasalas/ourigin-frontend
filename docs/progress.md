@@ -16,15 +16,14 @@ _Last updated: 2026-11-10_
 | Data | 🚧 Fixtures | Illustrative content behind `src/lib/data` getters; no API |
 | Imagery | 🚧 Temporary | Avatars and team photo cropped from the prototype screenshot |
 | Automated tests | ⏳ Not started | Parity and interaction checks were run manually (see [prototype parity](design-system/prototype-parity.md)) |
-| Version control | 🚧 Started | Git initialised with one checkpoint commit (the Next.js app). Nothing since is committed: the migration and every change after it |
+| Version control | ✅ Done | Public GitHub repository, [marizdelasalas/ourigin-frontend](https://github.com/marizdelasalas/ourigin-frontend); `main` is the deployed branch |
+| Hosting | ✅ Done | GitHub Pages at <https://marizdelasalas.github.io/ourigin-frontend/>, deployed by GitHub Actions on every push to `main` ([ADR-0019](decisions/0019-github-pages-for-the-public-preview.md)) |
 | Tooling | ✅ Done | Vite + React Router; Next.js removed ([ADR-0013](decisions/0013-vite-and-react-router-instead-of-nextjs.md)) |
 | Figma library | 🚧 In progress | Fresh files, no third-party kit: variables, styles, icons, every component on the shadcn/ui docs list (66 of 68; the other two have nothing to draw), all Ourigin components and the App shell. Home (desktop) built in the Application file ([Figma guide](design-system/figma.md)) |
-| Documentation | ✅ Done | This `docs/` directory, ADRs 0001–0018 |
+| Documentation | ✅ Done | This `docs/` directory, ADRs 0001–0019 |
 
 ## Next steps
 
-- [ ] Commit the Vite migration, and set a Git author identity (`git config user.name` / `user.email`)
-- [ ] Configure an SPA fallback on the chosen host ([getting started](getting-started.md#deploying))
 - [ ] Export a small brand symbol (the current file is 770 kB) and decide on image optimisation
 - [ ] Replace the cropped avatars and team photo with real images ([ADR-0011](decisions/0011-temporary-imagery-cropped-from-prototype.md))
 - [ ] Review the placeholder copy: navigation descriptions in `src/lib/data/navigation.ts` and the "coming soon" text in `SectionTemplate`
@@ -41,6 +40,22 @@ _Last updated: 2026-11-10_
 - [ ] Code (later): decide on `"style": "radix-nova"` in `components.json` and turn hard-coded colours into CSS variables ([future alignment](design-system/figma.md#future-alignment-code-not-now))
 
 ## Log
+
+### 2026-11-10: GitHub repository and GitHub Pages
+
+- Committed the Vite migration and everything after it, and pushed `main` to a
+  new GitHub repository, then made it public.
+- Published the app on GitHub Pages
+  ([ADR-0019](decisions/0019-github-pages-for-the-public-preview.md)): a GitHub
+  Actions workflow (`.github/workflows/deploy-pages.yml`) lints, builds and
+  deploys on every push to `main`.
+- Vite's `base` comes from `BASE_PATH` (set to `/ourigin-frontend/` in the
+  workflow, `/` otherwise), and the router's `basename` follows it. The workflow
+  copies `index.html` to `404.html` as the SPA fallback. Local development is
+  unchanged.
+- Checked the Pages build in a local server that behaves like GitHub Pages:
+  Home, a direct visit to `/inbox`, the not-found page, icons and images all
+  load under `/ourigin-frontend/`.
 
 ### 2026-11-10: shadcn/ui completeness check in Figma
 

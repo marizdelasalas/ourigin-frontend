@@ -34,6 +34,7 @@ Each record notes its **origin**:
 | [0016](0016-figma-library-on-obra-community-kit.md) | Figma library on the Obra shadcn/ui Community kit | Superseded by ADR-0018 | Project owner | 2026-11-09 |
 | [0017](0017-independent-figma-library.md) | An independent Ourigin Figma library based on shadcn/ui | Superseded by ADR-0018 | Project owner | 2026-11-09 |
 | [0018](0018-fresh-figma-design-system.md) | A fresh Figma design system in two new files | Accepted | Project owner | 2026-11-10 |
+| [0019](0019-github-pages-for-the-public-preview.md) | GitHub Pages for the public preview | Accepted | Project owner | 2026-11-10 |
 
 ## Writing a new ADR
 

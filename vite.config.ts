@@ -4,6 +4,8 @@ import { defineConfig } from "vite"
 
 // https://vite.dev/config/
 export default defineConfig({
+  // `/` locally. The GitHub Pages build sets `BASE_PATH=/ourigin-frontend/`.
+  base: process.env.BASE_PATH ?? "/",
   plugins: [react(), tailwindcss()],
   resolve: {
     // `@/*` → `src/*`, read from tsconfig.app.json.
