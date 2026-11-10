@@ -1,4 +1,4 @@
-import type { NavGroup, NavItem } from "@/types/workplace"
+import type { FollowingItem, NavGroup, NavItem } from "@/types/workplace"
 
 export const primaryNavigation: NavGroup = {
   items: [
@@ -62,6 +62,13 @@ export const exploreNavigation: NavGroup = {
 }
 
 export const navigation = [primaryNavigation, exploreNavigation]
+
+/** Shown under "Following" in the sidebar from `md` up. No routes yet. */
+export const followingNavigation: FollowingItem[] = [
+  { label: "Finance AI", icon: "panels-top-left", demo: "Finance AI" },
+  { label: "AI-request pilot", icon: "network", demo: "AI-request handoff pilot" },
+  { label: "Learning circle", icon: "book-open", demo: "Responsible AI learning circle" },
+]
 
 export function getNavItem(href: string): NavItem {
   const item = navigation

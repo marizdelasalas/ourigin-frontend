@@ -18,7 +18,7 @@ Each record notes its **origin**:
 | --- | --- | --- | --- | --- |
 | [0001](0001-record-architecture-decisions.md) | Record architecture decisions | Accepted | Project owner | 2026-11-09 |
 | [0002](0002-build-the-new-design-proposal.md) | Build the "New design proposal" | Accepted | Project owner | 2026-11-09 |
-| [0003](0003-nextjs-app-router-with-cache-components.md) | Next.js 16 App Router with Cache Components and `src/` | Accepted | Implementation default | 2026-11-09 |
+| [0003](0003-nextjs-app-router-with-cache-components.md) | Next.js 16 App Router with Cache Components and `src/` | Superseded by ADR-0013 | Implementation default | 2026-11-09 |
 | [0004](0004-shadcn-ui-on-radix.md) | shadcn/ui on Radix (`radix-nova`) | Accepted | Implementation default | 2026-11-09 |
 | [0005](0005-atomic-design-over-shadcn-primitives.md) | Atomic Design layered over shadcn primitives | Accepted | Project owner | 2026-11-09 |
 | [0006](0006-brand-tokens-and-design-breakpoints.md) | Brand tokens and design-specific breakpoints | Accepted | Implementation default | 2026-11-09 |
@@ -28,6 +28,12 @@ Each record notes its **origin**:
 | [0010](0010-placeholder-routes-for-unbuilt-sections.md) | Placeholder routes for unbuilt sections | Accepted | Project owner | 2026-11-09 |
 | [0011](0011-temporary-imagery-cropped-from-prototype.md) | Temporary imagery cropped from the prototype | Accepted | Project owner | 2026-11-09 |
 | [0012](0012-npm-as-package-manager.md) | npm as the package manager | Accepted | Implementation default | 2026-11-09 |
+| [0013](0013-vite-and-react-router-instead-of-nextjs.md) | Vite and React Router instead of Next.js | Accepted | Project owner | 2026-11-09 |
+| [0014](0014-lucide-icons-for-standard-controls.md) | Lucide icons for standard controls | Accepted | Project owner | 2026-11-09 |
+| [0015](0015-type-scale-tokens.md) | Type scale tokens with a 12px minimum | Accepted | Project owner | 2026-11-09 |
+| [0016](0016-figma-library-on-obra-community-kit.md) | Figma library on the Obra shadcn/ui Community kit | Superseded by ADR-0018 | Project owner | 2026-11-09 |
+| [0017](0017-independent-figma-library.md) | An independent Ourigin Figma library based on shadcn/ui | Superseded by ADR-0018 | Project owner | 2026-11-09 |
+| [0018](0018-fresh-figma-design-system.md) | A fresh Figma design system in two new files | Accepted | Project owner | 2026-11-10 |
 
 ## Writing a new ADR
 

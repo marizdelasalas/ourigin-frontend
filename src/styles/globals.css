@@ -20,6 +20,20 @@
   --breakpoint-xl: 84.4375rem; /* 1351px */
   --breakpoint-2xl: 93.75rem; /* 1500px */
 
+  /*
+   * Type scale for interface text. Headings keep their own sizes in
+   * atoms/heading.tsx. Line heights are the defaults; components may override.
+   *   caption  12px  metadata, timestamps, tags, pills, eyebrows
+   *   detail   13px  secondary text and descriptions
+   *   body     14px  body copy, navigation, buttons, labels, list titles
+   */
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.5;
+  --text-detail: 0.8125rem;
+  --text-detail--line-height: 1.55;
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.5;
+
   --shadow-frame: 0 30px 80px #075e6314;
   --shadow-card: 0 6px 23px #075e6305;
   --shadow-soft: 0 4px 14px #075e6305;
@@ -90,6 +104,10 @@
 
 /* Values come from the Ourigin identity proposal (03 / Color palette). */
 :root {
+  /* Self-hosted variable fonts from Fontsource, imported in src/main.tsx. */
+  --font-inter: "Inter Variable";
+  --font-manrope: "Manrope Variable";
+
   --radius: 0.625rem;
 
   --brand-deep-teal: #075e63;
@@ -117,7 +135,8 @@
   --destructive: #c94444;
   --border: var(--brand-border);
   --input: var(--brand-border);
-  --ring: #4d78c9;
+  /* Focus ring: brand overlap teal, ≥3:1 on the background, white and accent. */
+  --ring: #128d89;
 
   --chart-1: var(--brand-deep-teal);
   --chart-2: #4d78c9;
@@ -132,7 +151,7 @@
   --sidebar-accent: #e0f0ec;
   --sidebar-accent-foreground: var(--brand-deep-teal);
   --sidebar-border: #dce8e2;
-  --sidebar-ring: #4d78c9;
+  --sidebar-ring: #128d89;
 
   --success: #24864b;
   --warning: #a86508;
@@ -167,14 +186,29 @@
     @apply font-sans;
   }
   body {
-    @apply bg-background text-[12px] leading-[1.45] text-foreground;
+    @apply bg-background text-body leading-[1.45] text-foreground;
   }
+  /* The one focus indicator, for every interactive element. */
   :where(a, button, input, textarea):focus-visible {
     outline: 2px solid var(--ring);
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+}
+
+/*
+ * shadcn primitives draw a translucent 3px ring on focus and set outline-none.
+ * Swap that for the standard outline so every control looks the same. These
+ * rules are unlayered, so they win over the primitives' utilities. Menus, menu
+ * items (highlighted instead), dialogs and tab panels keep their own treatment.
+ */
+[data-slot]:focus-visible {
+  --tw-ring-shadow: 0 0 #0000;
+}
+[data-slot]:focus-visible:not([role="menu"], [role^="menuitem"], [role="dialog"], [role="tabpanel"]) {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
 }

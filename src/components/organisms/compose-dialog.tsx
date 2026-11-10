@@ -1,5 +1,3 @@
-"use client"
-
 import { useRef, useState } from "react"
 
 import { Button } from "@/components/atoms/button"
@@ -56,9 +54,9 @@ export function ComposeDialog({
           onChange={(event) => setText(event.target.value)}
           placeholder={isReply ? "Write a reply…" : "Share with Northstar…"}
           aria-label={isReply ? "Reply text" : "Post text"}
-          className="mt-2 mb-[15px] h-[140px] resize-y field-sizing-fixed rounded-md border-border p-3 text-[12px] md:text-[12px]"
+          className="mt-2 mb-[15px] h-[140px] resize-y field-sizing-fixed rounded-md border-border p-3 text-(length:--text-body) md:text-(length:--text-body)"
         />
-        <Button type="submit" className="px-3.5 py-[9px] text-[14px]">
+        <Button type="submit" className="px-3.5 py-[9px]">
           {isReply ? "Add reply to preview" : "Add post to preview"}
         </Button>
       </form>

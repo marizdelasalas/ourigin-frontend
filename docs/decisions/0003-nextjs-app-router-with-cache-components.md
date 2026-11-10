@@ -1,6 +1,6 @@
 # ADR-0003: Next.js 16 App Router with Cache Components and `src/`
 
-- **Status:** Accepted
+- **Status:** Superseded by [ADR-0013](0013-vite-and-react-router-instead-of-nextjs.md)
 - **Date:** 2026-11-09
 - **Origin:** Implementation default (Next.js recommended settings)
 
@@ -24,7 +24,7 @@ the App Router, Turbopack, Cache Components and `AGENTS.md`.
 
 - All current routes prerender as static content. Dynamic data will need
   `'use cache'` or `<Suspense>` boundaries
-  (see [adding pages](../guides/adding-pages.md#caching-and-dynamic-data)).
+  (see [adding pages](../guides/adding-pages.md)).
 - Visited routes stay alive with React `<Activity>`, so page state survives
   navigation ([state and data](../architecture/state-and-data.md#route-preservation)).
 - `next build` no longer runs ESLint, so linting is a separate step

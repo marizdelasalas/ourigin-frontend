@@ -2,6 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-09
+- **Amended by:** [ADR-0013](0013-vite-and-react-router-instead-of-nextjs.md): placeholder routes are generated in `src/app/router.tsx` from the navigation data and render `SectionPage`
 - **Origin:** Project owner
 
 ## Context

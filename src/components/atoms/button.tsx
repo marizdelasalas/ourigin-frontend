@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
  * component still provides focus rings, disabled states and `asChild`.
  */
 const buttonVariants = cva(
-  "h-auto gap-[9px] border-0 font-sans whitespace-nowrap [&_svg:not([class*='size-'])]:size-4",
+  "h-auto gap-[9px] border-0 font-sans text-(length:--text-body) whitespace-nowrap [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       tone: {

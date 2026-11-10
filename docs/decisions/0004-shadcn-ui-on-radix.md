@@ -2,6 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-09
+- **Amended by:** [ADR-0013](0013-vite-and-react-router-instead-of-nextjs.md): `next-themes` was removed and `components/ui/sonner.tsx` is fixed to the light theme
 - **Origin:** Implementation default (stated at kickoff)
 
 ## Context

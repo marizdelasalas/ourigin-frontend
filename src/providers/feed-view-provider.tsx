@@ -1,5 +1,3 @@
-"use client"
-
 import { createContext, use, useCallback, useMemo, useState } from "react"
 
 import type { FeedFilter } from "@/types/workplace"

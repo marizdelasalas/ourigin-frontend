@@ -1,5 +1,3 @@
-import Image from "next/image"
-
 import symbol from "@/assets/brand/ourigin-symbol.png"
 import { cn } from "@/lib/utils"
 
@@ -12,11 +10,11 @@ type BrandSymbolProps = {
 /** The open-circle-and-dot symbol. Decorative: always pair it with a label. */
 export function BrandSymbol({ className, eager }: BrandSymbolProps) {
   return (
-    <Image
+    <img
       src={symbol}
       alt=""
-      sizes="42px"
-      loading={eager ? "eager" : undefined}
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
       className={cn("h-9 w-8 shrink-0 object-contain", className)}
     />
   )

@@ -3,7 +3,7 @@
 The values here come from the Ourigin brand identity proposal (sections 03–05)
 and the "New design proposal" page, which is the design source
 ([ADR-0002](../decisions/0002-build-the-new-design-proposal.md)). They're
-defined in `src/app/globals.css`
+defined in `src/styles/globals.css`
 ([ADR-0006](../decisions/0006-brand-tokens-and-design-breakpoints.md)).
 
 The design is **light only**. There is no dark palette, and shadcn's `dark:`
@@ -37,10 +37,10 @@ Use these through Tailwind utilities (`bg-primary`, `text-muted-foreground`, …
 | `accent` / `accent-foreground` | `#E9F3EF` / deep teal | Hover backgrounds |
 | `destructive` | `#C94444` | Brand "Error" |
 | `border`, `input` | border | |
-| `ring` | `#4D78C9` | Focus outline, from the prototype |
+| `ring` | `#128D89` (brand overlap teal) | Focus outline. 3.7:1 on the background, 4.0:1 on white, 3.6:1 on `accent` |
 | `sidebar` | white at 85% | Sidebar surface |
 | `sidebar-accent` | `#E0F0EC` | Active navigation item |
-| `sidebar-border` | `#DCE8E2` | Collapse toggle outline |
+| `sidebar-border` | `#DCE8E2` | Currently unused (was the old collapse button outline) |
 | `chart-1` … `chart-5` | deep teal, `#4D78C9`, `#8A6BC1`, `#D89A39`, `#D97869` | Brand data-visualisation palette |
 
 ### Product and status tokens
@@ -65,9 +65,29 @@ tints) stay as arbitrary values in the component that uses them.
 | Headings, wordmark | Manrope (`font-heading`) | 650, 700, 750 |
 | Body and interface | Inter (`font-sans`) | 400, 600, 650, 700, 750 (dialog titles) |
 
-The base text is **12px with a 1.45 line height**. The design's small type
-(7–14px) uses arbitrary values such as `text-[11px]`, copied from the
-prototype.
+Both are variable fonts, self-hosted from `@fontsource-variable/manrope` and
+`@fontsource-variable/inter` and imported in `src/main.tsx`. `globals.css` maps
+them to `--font-manrope` and `--font-inter`. Only the subsets a page uses are
+downloaded.
+
+The base text is **14px with a 1.45 line height**. Interface text uses three
+size tokens, defined in `globals.css`:
+
+| Utility | Size | Line height | Used for |
+| --- | --- | --- | --- |
+| `text-caption` | 12px | 1.5 | Metadata, timestamps, tags, pills, eyebrows, counts, the phone tab bar |
+| `text-detail` | 13px | 1.55 | Secondary text and descriptions |
+| `text-body` | 14px | 1.5 | Body copy, navigation, buttons, labels, inputs, list and menu items |
+
+12px is the minimum size anywhere in the app. Use the tokens rather than pixel
+values; a `leading-*` class still overrides the line height. Inside shadcn
+primitives, write the token as `text-(length:--text-body)` (see the
+[cn rules](../guides/conventions.md#cn-rules)). The `Button` atom and `Pill`
+set their sizes themselves, so callers don't pass one.
+
+The scale was raised on 2026-11-09 for readability
+([ADR-0015](../decisions/0015-type-scale-tokens.md)). Before, small text was
+7–12px.
 
 Heading levels (`atoms/heading.tsx`):
 
@@ -77,9 +97,10 @@ Heading levels (`atoms/heading.tsx`):
 | `feature` | 25px | | | 29px | 33px | Featured announcement |
 | `post` | 21px | | | | | Post titles, empty states |
 | `recognition` | 23px | | | 27px | | Recognition title (teal) |
-| `panel` | 21px | 18px | 15px | | 17px | Context panel titles |
+| `panel` | 21px | 18px | | | | Context panel titles |
 
-Post body copy (`PostText`) is 11px with a 1.85 line height (12px from `2xl`).
+Post body copy (`PostText`) is `text-body` (14px) with a 1.7 line height.
+The top bar's workspace name is Manrope 18px.
 
 ## Radius
 
@@ -111,7 +132,7 @@ frame) is kept in `globals.css` but is currently unused.
 
 ## Iconography
 
-[ADR-0007](../decisions/0007-custom-duotone-icon-set.md)
+[ADR-0007](../decisions/0007-custom-duotone-icon-set.md), [ADR-0014](../decisions/0014-lucide-icons-for-standard-controls.md)
 
 - `atoms/icon.tsx` contains the brand's two-tone set: solid shapes with
   translucent secondary layers on a 24px grid. Use `<Icon name="…" />`.
@@ -125,17 +146,23 @@ frame) is kept in `globals.css` but is currently unused.
   `circle-help`, `plus`, `pencil`, `message-circle`, `award`, `paperclip`,
   `ellipsis`, `arrow-up-right`, `heart`, `trophy`, `bookmark`, `circle-check`,
   `heart-handshake`, `panel-left-close`, `panel-left-open`.
-- Lucide is installed only because shadcn primitives use it internally. Don't
-  use it in Ourigin components.
+- Lucide is used inside shadcn primitives and, by request, in the account menu
+  (`molecules/account-menu.tsx`) the sidebar toggle (`ChevronLeft` and
+  `ChevronRight` at stroke 1.75 in `organisms/app-sidebar.tsx`). Elsewhere,
+  use the two-tone set.
 
 ## Imagery
 
 | Asset | Location | Notes |
 | --- | --- | --- |
 | Brand symbol | `src/assets/brand/ourigin-symbol.png` (1254×1254) | Rendered with `BrandSymbol` |
-| App icons | `src/app/icon.png` (512px), `src/app/apple-icon.png` (180px) | Generated from the symbol |
+| App icons | `public/icon.png` (512px), `public/apple-icon.png` (180px) | Generated from the symbol; linked from `index.html` |
+| AI assistant robot | `src/assets/brand/ourigin-ai-assistant.png` (1261×1247, transparent) | The Ask Ourigin card, shown 44px tall. Used exactly as supplied; the file is 840 kB |
 | People | `src/assets/people/*.png` (39×39) | Temporary crops ([ADR-0011](../decisions/0011-temporary-imagery-cropped-from-prototype.md)) |
 | Team photo | `src/assets/content/team-collaboration.png` (202×59) | Temporary crop |
 
-Images are imported statically, so `next/image` knows their size and avoids
-layout shift. Avatars next to a name are decorative (`alt=""`).
+Images are imported statically; Vite returns a hashed URL and copies the file
+into the build. They render as plain `<img>` elements whose size is fixed by
+classes, so they don't shift the layout. They aren't resized: the brand symbol
+is 770 kB at full size, so export a small version before launch. Avatars next to
+a name are decorative (`alt=""`).

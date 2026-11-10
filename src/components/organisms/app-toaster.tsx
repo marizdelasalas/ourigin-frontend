@@ -22,7 +22,7 @@ export function AppToaster() {
         unstyled: true,
         classNames: {
           toast:
-            "pointer-events-none right-auto! left-1/2! w-fit! max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-[6px] bg-primary px-5 py-2.5 font-sans text-[12px] leading-[1.45] text-primary-foreground",
+            "pointer-events-none right-auto! left-1/2! w-fit! max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-[6px] bg-primary px-5 py-2.5 font-sans text-body leading-[1.45] text-primary-foreground",
         },
       }}
     />

@@ -24,8 +24,8 @@ such as the collapsing search field.
 | | Phone (< 701) | Tablet (701–1150) | Desktop (1151–1499) | Wide (≥ 1500) |
 | --- | --- | --- | --- | --- |
 | Shell | Full viewport, `#EFF5F3`; bottom padding for the tab bar | Full viewport (`w-full min-h-dvh`), no outer margin or frame | Same | Same |
-| Navigation | Bottom tab bar, 65px plus safe area: Home, Inbox, Calendar, Messages | Sidebar 185px (78px collapsed) | Sidebar 210px (78px collapsed) | Same |
-| Top bar | 77px: symbol and wordmark, search icon, avatar | 92px: wordmark, 260px search, notifications, help, avatar | 365px search | Same |
+| Navigation | Bottom tab bar, 65px plus safe area: Home, Inbox, Calendar, Messages | Sidebar 185px (78px collapsed), with Explore, Following and Ask Ourigin; its contents stick and scroll on short windows | Sidebar 210px (78px collapsed) | Same |
+| Top bar | 77px: symbol and workspace name, search icon, account menu (avatar only) | 92px: workspace name, 260px search, notifications, help, account menu (avatar, name, role, chevron) | 365px search | Same |
 | Page padding (top, sides, bottom) | 8 / 16 / 25px | 0 / 18 / 24px | 0 / 30 / 30px | 0 / 34 / 36px |
 | Columns | Feed, then context rail below | Rail 220px + feed, 16px gap | Rail 290px + feed, 24px gap | Rail 310px + feed, 28px gap |
 
@@ -45,7 +45,11 @@ read feed-first. From `md` up it's placed in the left grid column.
 | Decision post | Call to action is full width on phones; the row wraps below `xl` |
 | `Callout` | Wraps below `xl`; action button is 42px tall on phones |
 | Recognition post | Medal 46px on phones, 64px from `md`; footer wraps below `lg` |
-| `ContextPanel` titles | 21px below `sm`, 18px to `md`, 15px on tablet and desktop, 17px from `2xl` |
+| `ContextPanel` titles | 21px below `sm`, 18px from `sm` up |
+| `AccountMenu` | Avatar only on phones (name and role stay available to screen readers); avatar, name, role and chevron from `md`. The menu opens below, aligned right |
+| `AppSidebar` | From `md` up its contents stick to the top of the window and scroll on their own when taller than it. Collapsed (78px): icons with tooltips, and the toggle sits under the brand symbol |
+| `FollowingItem`, `AskOuriginCard` | Hidden on phones, like Explore. In the 185px tablet sidebar, "AI-request pilot" wraps to two lines and the Ask Ourigin description to three |
+| Phone tab bar | Four 66px tabs with 12px labels |
 | Toasts | Above the tab bar on phones (`--toast-offset`); 25px from the bottom from `md` |
 
 ## Safe areas

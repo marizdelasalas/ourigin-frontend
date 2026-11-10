@@ -2,6 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-09
+- **Amended by:** [ADR-0014](0014-lucide-icons-for-standard-controls.md): Lucide is allowed for standard controls (the account menu and the sidebar toggle)
 - **Origin:** Implementation default
 
 ## Context

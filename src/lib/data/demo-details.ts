@@ -23,6 +23,14 @@ const demoDetails: Record<string, string> = {
   "Priya Nair":
     "Systems design. Self-listed expertise. Facilitator for the Responsible AI learning circle.",
   "Nora Chen": "Organization lead at Northstar.",
+  "Account Settings":
+    "Account settings aren't part of this preview yet. There are no real accounts, so nothing can be changed.",
+  Preferences:
+    "Personal preferences aren't part of this preview yet. To choose what the Home feed shows, use Customize feed.",
+  "Ask Ourigin":
+    "Asking questions across your workplace's connected context isn't part of this preview yet.",
+  "Log out":
+    "Signing in and out isn't available in this preview yet. There's no real account, so you haven't been logged out.",
 }
 
 const fallback =

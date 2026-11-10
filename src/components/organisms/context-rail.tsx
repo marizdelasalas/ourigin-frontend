@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "react-router"
 
 import { Icon } from "@/components/atoms/icon"
 import { Pill } from "@/components/atoms/pill"
@@ -34,8 +34,8 @@ export function ContextRail({ context, className }: ContextRailProps) {
         title="Today"
         aside={
           <Link
-            href="/calendar"
-            className="text-[10px] font-[650] text-primary md:text-[8px]"
+            to="/calendar"
+            className="text-caption font-[650] text-primary"
           >
             Open calendar
           </Link>
@@ -84,7 +84,7 @@ export function ContextRail({ context, className }: ContextRailProps) {
         }
         headingClassName="mt-1 mb-[7px]"
       >
-        <p className="mb-2.5 text-[9px] leading-[1.7] text-muted-foreground">
+        <p className="mb-2.5 text-detail text-muted-foreground">
           {saved.description}
         </p>
         {saved.items.map((item) => (

@@ -35,5 +35,5 @@ export const operationsAndEngineering: Person = {
 
 export const workspace = {
   name: "Northstar",
-  tagline: "Northstar / Your workplace",
+  tagline: "Your workplace",
 }

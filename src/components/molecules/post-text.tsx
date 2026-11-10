@@ -13,10 +13,10 @@ export function PostText({
   return (
     <p
       className={cn(
-        "text-[11px] text-muted-foreground 2xl:text-[12px]",
+        "text-body text-muted-foreground",
         className,
         // After className: cn drops a line height that precedes a font size.
-        "leading-[1.85]"
+        "leading-[1.7]"
       )}
     >
       {lines.map((line, index) => (

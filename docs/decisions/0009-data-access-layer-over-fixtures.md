@@ -2,6 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-09
+- **Amended by:** [ADR-0013](0013-vite-and-react-router-instead-of-nextjs.md): the getters no longer import `server-only`; `HomePage` reads them with `use()`
 - **Origin:** Implementation default
 
 ## Context

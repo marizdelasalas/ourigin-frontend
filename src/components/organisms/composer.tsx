@@ -1,5 +1,3 @@
-"use client"
-
 import { Button } from "@/components/atoms/button"
 import { Icon, type IconName } from "@/components/atoms/icon"
 import { Surface } from "@/components/atoms/surface"
@@ -27,13 +25,13 @@ export function Composer() {
           <button
             type="button"
             onClick={() => openCompose("Create post")}
-            className="min-h-[38px] flex-1 rounded-control bg-secondary px-3 py-2.5 text-left text-[10px] leading-[1.5] text-muted-foreground md:min-h-0 md:px-[15px] md:py-3 md:text-[11px] md:leading-[1.45]"
+            className="min-h-[38px] flex-1 rounded-control bg-secondary px-3 py-2.5 text-left text-body text-muted-foreground md:min-h-0 md:px-[15px] md:py-3"
           >
             Share progress, ask a question, or say thanks...
           </button>
           <Button
             onClick={() => openCompose("Create post")}
-            className="min-w-[34px] p-2.5 text-[11px] md:min-w-[35px] md:p-3 lg:min-w-[120px] lg:px-[15px]"
+            className="min-w-[34px] p-2.5 md:min-w-[35px] md:p-3 lg:min-w-[120px] lg:px-[15px]"
           >
             <Icon name="pencil" className="size-4" />
             <span className="sr-only lg:not-sr-only">Create post</span>
@@ -46,7 +44,7 @@ export function Composer() {
               type="button"
               onClick={() => openCompose(tool.kind)}
               className={cn(
-                "flex min-h-[25px] items-center gap-[5px] text-[8px] font-semibold text-primary md:min-h-0 md:gap-1.5 md:text-[9px]",
+                "flex min-h-[25px] items-center gap-[5px] text-caption font-semibold text-primary md:min-h-0 md:gap-1.5",
                 tool.kind === "Source" && "max-md:hidden"
               )}
             >

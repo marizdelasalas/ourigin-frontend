@@ -1,12 +1,10 @@
-"use client"
-
-import Link from "next/link"
+import { Link } from "react-router"
 
 import { Icon } from "@/components/atoms/icon"
-import { BrandSymbol, Wordmark } from "@/components/atoms/logo"
-import { UserAvatar } from "@/components/atoms/user-avatar"
+import { BrandSymbol } from "@/components/atoms/logo"
+import { AccountMenu } from "@/components/molecules/account-menu"
 import { SearchField } from "@/components/molecules/search-field"
-import { viewer } from "@/lib/data/people"
+import { workspace } from "@/lib/data/people"
 import { useDemoDialog } from "@/providers/demo-dialog-provider"
 
 export function TopBar() {
@@ -14,14 +12,18 @@ export function TopBar() {
 
   return (
     <header className="relative flex h-[77px] items-center justify-between gap-[15px] bg-background px-5 py-[18px] md:h-[92px] md:gap-[25px] md:bg-transparent md:px-[22px] md:py-5 lg:px-[30px]">
-      <Link
-        href="/"
-        aria-label="Ourigin home"
-        className="mr-auto flex items-center gap-2"
-      >
-        <BrandSymbol eager className="h-[31px] w-7 md:hidden" />
-        <Wordmark className="text-[24px] font-bold tracking-[-1.2px] md:text-[21px] lg:text-[24px]" />
-      </Link>
+      <div className="mr-auto flex min-w-0 items-center gap-2.5">
+        {/* Phones have no sidebar, so the symbol is their only brand mark. */}
+        <Link to="/" aria-label="Ourigin home" className="shrink-0 md:hidden">
+          <BrandSymbol eager className="h-[31px] w-7" />
+        </Link>
+        {/* Static until workspace switching exists. */}
+        <p className="flex min-w-0 items-center gap-1.5 font-heading text-[18px] font-bold tracking-[-0.4px] text-foreground">
+          <span className="sr-only">Workspace: </span>
+          <span className="truncate">{workspace.name}</span>
+          <Icon name="chevron-down" aria-hidden="true" className="size-4 shrink-0 text-muted-foreground" />
+        </p>
+      </div>
 
       <SearchField />
 
@@ -43,14 +45,7 @@ export function TopBar() {
         >
           <Icon name="circle-help" className="size-5" />
         </button>
-        <button
-          type="button"
-          aria-label={`${viewer.name} profile`}
-          onClick={() => openDemo(viewer.name)}
-          className="rounded-full"
-        >
-          <UserAvatar person={viewer} className="size-[30px] ring-3 ring-white md:size-[34px]" />
-        </button>
+        <AccountMenu />
       </div>
     </header>
   )

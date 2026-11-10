@@ -1,5 +1,3 @@
-"use client"
-
 import { Icon } from "@/components/atoms/icon"
 import { UserAvatar } from "@/components/atoms/user-avatar"
 import { useDemoDialog } from "@/providers/demo-dialog-provider"
@@ -21,15 +19,15 @@ export function PostByline({ author, meta, menuLabel }: PostBylineProps) {
         className={
           author.avatar
             ? "size-[30px] md:size-[34px]"
-            : "size-8 *:data-[slot=avatar-fallback]:text-[9px] md:size-9 md:*:data-[slot=avatar-fallback]:text-[10px]"
+            : "size-8 *:data-[slot=avatar-fallback]:text-caption md:size-9"
         }
       />
-      {/* The name stays inline so its line box keeps the 12px base line height. */}
+      {/* The name stays inline so its line box keeps the base line height. */}
       <div className="min-w-0">
-        <span className="text-[10px] font-[650] md:text-[11px] 2xl:text-[12px]">
+        <span className="text-body font-[650]">
           {author.name}
         </span>
-        <span className="mt-[3px] block text-[8px] leading-[1.6] text-muted-foreground md:text-[9px] md:leading-[1.45] 2xl:text-[10px]">
+        <span className="mt-[3px] block text-caption text-muted-foreground">
           {meta}
         </span>
       </div>

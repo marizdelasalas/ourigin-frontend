@@ -1,5 +1,3 @@
-"use client"
-
 import { useDemoDialog } from "@/providers/demo-dialog-provider"
 import type { CalendarEvent } from "@/types/workplace"
 
@@ -15,16 +13,16 @@ export function EventItem({ event }: { event: CalendarEvent }) {
     >
       <time
         dateTime={event.time}
-        className="w-[43px] text-[14px] font-bold text-primary md:w-[38px] md:text-[12px]"
+        className="w-[43px] text-body font-bold text-primary"
       >
         {event.time}
       </time>
       <span className="border-l-2 border-primary pl-[9px]">
-        {/* Inline, so the line box keeps the 12px base line height. */}
-        <span className="text-[12px] font-[650] md:text-[10px]">
+        {/* Inline, so the line box keeps the base line height. */}
+        <span className="text-body font-[650]">
           {event.title}
         </span>
-        <span className="mt-[3px] block text-[10px] leading-[1.6] text-muted-foreground md:text-[9px]">
+        <span className="mt-[3px] block text-detail text-muted-foreground">
           {event.description}
         </span>
       </span>

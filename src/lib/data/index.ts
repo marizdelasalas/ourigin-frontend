@@ -1,5 +1,3 @@
-import "server-only"
-
 import type { FeedPost, WorkplaceContext } from "@/types/workplace"
 
 import { homeFeed } from "./home-feed"

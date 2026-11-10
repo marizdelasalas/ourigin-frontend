@@ -1,5 +1,3 @@
-"use client"
-
 import { Icon } from "@/components/atoms/icon"
 import { PostCard } from "@/components/organisms/posts/post-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -92,27 +90,27 @@ export function Feed() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="h-auto min-h-[33px] flex-none rounded-none border-0 px-0 pt-0 pb-[9px] text-[11px] font-normal text-muted-foreground after:bottom-0 after:h-0.5 after:bg-primary group-data-horizontal/tabs:after:bottom-0 data-active:font-bold data-active:text-primary md:min-h-0"
+              className="h-auto min-h-[33px] flex-none rounded-none border-0 px-0 pt-0 pb-[9px] text-(length:--text-body) font-normal text-muted-foreground after:bottom-0 after:h-0.5 after:bg-primary group-data-horizontal/tabs:after:bottom-0 data-active:font-bold data-active:text-primary md:min-h-0"
             >
               {tab.label}
             </TabsTrigger>
           ))}
         </TabsList>
-        <p className="hidden text-[8px] text-muted-foreground md:block">
+        <p className="hidden text-caption text-muted-foreground md:block">
           {caption}
         </p>
       </div>
 
-      <TabsContent value={filter} className="text-[12px]">
+      <TabsContent value={filter} className="text-(length:--text-body)">
         {visiblePosts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
         {visiblePosts.length === 0 ? (
-          <p className="p-[35px] text-center text-[12px] text-muted-foreground">
+          <p className="p-[35px] text-center text-body text-muted-foreground">
             No posts match this view.
           </p>
         ) : null}
-        <p className="flex items-center justify-center gap-[7px] pt-2 pb-2.5 text-[9px] leading-[1.6] text-muted-foreground sm:gap-3 md:leading-[1.45]">
+        <p className="flex items-center justify-center gap-[7px] pt-2 pb-2.5 text-caption text-muted-foreground sm:gap-3">
           <Icon name="circle-check" className="size-[17px] text-primary" />
           You&apos;re caught up with this illustrative feed.
         </p>

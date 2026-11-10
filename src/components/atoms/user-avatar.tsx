@@ -1,5 +1,3 @@
-import Image from "next/image"
-
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
 import type { Person } from "@/types/workplace"
@@ -11,9 +9,9 @@ type UserAvatarProps = {
 
 /**
  * Round portrait for a person, or their initials when no photo exists.
- * Photos use next/image instead of AvatarImage so they render on the server
- * without flashing the fallback first. Avatars sit beside the person's name,
- * so they are decorative.
+ * Photos use a plain <img> instead of AvatarImage, which shows the initials
+ * until the photo has loaded. Avatars sit beside the person's name, so they
+ * are decorative.
  */
 export function UserAvatar({ person, className }: UserAvatarProps) {
   return (
@@ -24,15 +22,15 @@ export function UserAvatar({ person, className }: UserAvatarProps) {
       )}
     >
       {person.avatar ? (
-        <Image
+        <img
           src={person.avatar}
           alt=""
-          fill
-          sizes="40px"
-          className="object-cover"
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 size-full object-cover"
         />
       ) : (
-        <AvatarFallback className="bg-chip text-[10px] font-bold text-primary">
+        <AvatarFallback className="bg-chip text-(length:--text-caption) font-bold text-primary">
           {person.initials}
         </AvatarFallback>
       )}

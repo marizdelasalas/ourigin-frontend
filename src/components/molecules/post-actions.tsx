@@ -1,5 +1,3 @@
-"use client"
-
 import { Icon } from "@/components/atoms/icon"
 
 type PostActionsProps = {
@@ -13,7 +11,7 @@ type PostActionsProps = {
 }
 
 const textAction =
-  "min-h-8 px-[7px] py-2 font-semibold text-primary md:min-h-0 md:px-[5px] md:py-[3px] lg:px-2.5"
+  "min-h-8 px-[7px] py-2 text-body font-semibold text-primary md:min-h-0 md:px-[5px] md:py-[3px] lg:px-2.5"
 
 /** Reaction summary and the Appreciate / Reply / Save actions of a post. */
 export function PostActions({
@@ -26,15 +24,15 @@ export function PostActions({
   onSave,
 }: PostActionsProps) {
   return (
-    <div className="flex flex-wrap items-center gap-2.5 text-[9px] md:flex-nowrap lg:gap-[23px]">
-      <span className="flex items-center gap-[9px] text-muted-foreground">
+    <div className="flex flex-wrap items-center gap-2.5 text-caption md:flex-nowrap lg:gap-[23px]">
+      <span className="flex items-center gap-[9px] whitespace-nowrap text-muted-foreground">
         <Icon name="heart" className="size-[13px] text-primary" />
         {reactions + (appreciated ? 1 : 0)} reactions
       </span>
       <button
         type="button"
         onClick={onReply}
-        className="flex min-h-8 items-center gap-[9px] text-muted-foreground md:min-h-0"
+        className="flex min-h-8 items-center gap-[9px] whitespace-nowrap text-muted-foreground md:min-h-0"
       >
         <Icon name="message-circle" className="size-[13px] text-primary" />
         {comments} comments

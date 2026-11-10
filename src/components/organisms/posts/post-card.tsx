@@ -1,5 +1,3 @@
-"use client"
-
 import { Heading } from "@/components/atoms/heading"
 import { Icon } from "@/components/atoms/icon"
 import { Medal } from "@/components/atoms/medal"
@@ -81,12 +79,12 @@ function RecognitionCard({ post }: { post: RecognitionPost }) {
           </Heading>
           <PostText
             lines={post.body}
-            className="text-[10px] text-foreground md:text-[11px]"
+            className="text-foreground"
           />
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-between gap-2.5 md:gap-3 lg:flex-nowrap lg:gap-0">
-        <p className="text-[8px] text-muted-foreground md:text-[9px]">
+        <p className="text-caption text-muted-foreground">
           {post.footnote}
         </p>
         <div className="flex items-center gap-[25px]">
@@ -95,7 +93,7 @@ function RecognitionCard({ post }: { post: RecognitionPost }) {
             aria-label="Appreciate recognition"
             aria-pressed={appreciated}
             onClick={() => toggleAppreciate(post.id)}
-            className="flex min-h-8 items-center gap-[9px] text-[9px] text-muted-foreground md:min-h-0"
+            className="flex min-h-8 items-center gap-[9px] text-caption whitespace-nowrap text-muted-foreground md:min-h-0"
           >
             <Icon name="heart" className="size-[15px] text-primary" />
             <span>{post.reactions + (appreciated ? 1 : 0)}</span>
@@ -103,7 +101,7 @@ function RecognitionCard({ post }: { post: RecognitionPost }) {
           <button
             type="button"
             onClick={openReply}
-            className="flex min-h-8 items-center gap-[9px] text-[9px] text-muted-foreground md:min-h-0"
+            className="flex min-h-8 items-center gap-[9px] text-caption whitespace-nowrap text-muted-foreground md:min-h-0"
           >
             <Icon name="message-circle" className="size-[15px] text-primary" />
             {post.comments} comments
@@ -133,12 +131,12 @@ function DecisionCard({ post }: { post: DecisionPost }) {
       <PostText lines={post.body} />
       <div className="mt-5 flex flex-wrap items-center gap-3 xl:flex-nowrap">
         <Pill tone="decision">{post.status}</Pill>
-        <p className="text-[8px] text-muted-foreground md:text-[9px]">
+        <p className="text-caption text-muted-foreground">
           {post.context}
         </p>
         <Button
           onClick={openReply}
-          className="mt-[5px] ml-auto min-h-[42px] w-full px-3.5 py-[11px] text-[11px] sm:mt-0 md:min-h-0 md:w-auto md:text-[10px]"
+          className="mt-[5px] ml-auto min-h-[42px] w-full px-3.5 py-[11px] sm:mt-0 md:min-h-0 md:w-auto"
         >
           <Icon name="message-circle" className="size-4" />
           {post.cta}

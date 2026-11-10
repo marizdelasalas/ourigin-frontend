@@ -1,6 +1,4 @@
-"use client"
-
-import { createContext, use, useCallback, useMemo, useState } from "react"
+import { createContext, use, useCallback, useMemo, useRef, useState } from "react"
 
 import { PreviewDialog } from "@/components/molecules/preview-dialog"
 import { getDemoDetail } from "@/lib/data/demo-details"
@@ -15,8 +13,15 @@ const DemoDialogContext = createContext<DemoDialogContextValue | null>(null)
 export function DemoDialogProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
   const [title, setTitle] = useState("")
+  // The dialog has no DialogTrigger, so Radix can't return focus on its own.
+  const returnFocusTo = useRef<HTMLElement | null>(null)
+  // Show the focus ring on return only if the opener was showing one.
+  const returnFocusVisible = useRef(false)
 
   const openDemo = useCallback((nextTitle: string) => {
+    const opener = document.activeElement
+    returnFocusTo.current = opener instanceof HTMLElement ? opener : null
+    returnFocusVisible.current = opener?.matches(":focus-visible") ?? false
     setTitle(nextTitle)
     setOpen(true)
   }, [])
@@ -31,6 +36,13 @@ export function DemoDialogProvider({ children }: { children: React.ReactNode }) 
         onOpenChange={setOpen}
         title={title}
         description={getDemoDetail(title)}
+        onCloseAutoFocus={(event) => {
+          const target = returnFocusTo.current
+          if (target?.isConnected) {
+            event.preventDefault()
+            target.focus({ focusVisible: returnFocusVisible.current })
+          }
+        }}
       />
     </DemoDialogContext>
   )

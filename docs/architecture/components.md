@@ -14,13 +14,13 @@ keep it predictable in this codebase.
 | Molecules | `components/molecules/` | A few atoms working together as one unit | `SearchField`, `RailItem`, `PostByline` |
 | Organisms | `components/organisms/` | A distinct section of the interface | `AppSidebar`, `Feed`, `ContextRail` |
 | Templates | `components/templates/` | Page-level layout that arranges organisms, with no content of its own | `AppShell`, `HomeTemplate` |
-| Pages | `app/**/page.tsx` | A template filled with real data | `(workplace)/page.tsx` |
+| Pages | `pages/` | A template filled with real data, rendered by a route in `app/router.tsx` | `HomePage`, `SectionPage` |
 
 Dependencies only point down the hierarchy:
 
 ```mermaid
 flowchart LR
-  pages["app/ (pages)"] --> templates --> organisms --> molecules --> atoms --> ui["ui/ (shadcn)"]
+  pages["pages/"] --> templates --> organisms --> molecules --> atoms --> ui["ui/ (shadcn)"]
   organisms --> ui
   molecules --> ui
   templates --> providers
@@ -50,64 +50,64 @@ flowchart LR
    There are no barrel (`index.ts`) files: direct imports keep client bundles
    small and boundaries obvious.
 
-## Server and client components
+## Rendering
 
-Components are Server Components unless they need state, effects or event
-handlers. A file with `"use client"` makes everything it imports part of the
-client bundle, so keep the directive on the smallest component that needs it.
-Server components can still be passed as `children` into client components:
-`HomeTemplate` renders the server-side `ContextRail` inside the client
-`HomeFeedProvider`.
+Every component renders in the browser; there are no Server Components and no
+`"use client"` directives ([ADR-0013](../decisions/0013-vite-and-react-router-instead-of-nextjs.md)).
+Keeping components without state or effects free of hooks still pays off:
+they stay simple to test and to reuse, and they're ready for server rendering
+if it ever returns.
 
 ## Inventory
 
-`Client` means the file declares `"use client"`.
-
 ### Atoms
 
-| Component | File | Client | Purpose |
-| --- | --- | --- | --- |
-| `Button` | `atoms/button.tsx` | | Ourigin tones (`primary`, `soft`, `plain`) over `ui/button` |
-| `Heading` | `atoms/heading.tsx` | | Manrope headings: `page`, `feature`, `post`, `recognition`, `panel` |
-| `Icon` | `atoms/icon.tsx` | | 29 two-tone icons, sized and coloured with classes |
-| `BrandSymbol`, `Wordmark` | `atoms/logo.tsx` | | The symbol (next/image) and the lowercase wordmark |
-| `Medal` | `atoms/medal.tsx` | | Trophy medal with ribbon on recognition posts |
-| `Pill` | `atoms/pill.tsx` | | Status pills and the navigation counter over `ui/badge` |
-| `Surface` | `atoms/surface.tsx` | | White card with Ourigin radius and shadow; supports `asChild` |
-| `UserAvatar` | `atoms/user-avatar.tsx` | | Photo or initials over `ui/avatar` |
+| Component | File | Purpose |
+| --- | --- | --- |
+| `Button` | `atoms/button.tsx` | Ourigin tones (`primary`, `soft`, `plain`) over `ui/button` |
+| `Heading` | `atoms/heading.tsx` | Manrope headings: `page`, `feature`, `post`, `recognition`, `panel` |
+| `Icon` | `atoms/icon.tsx` | 29 two-tone icons, sized and coloured with classes |
+| `BrandSymbol`, `Wordmark` | `atoms/logo.tsx` | The symbol image and the lowercase wordmark |
+| `Medal` | `atoms/medal.tsx` | Trophy medal with ribbon on recognition posts |
+| `Pill` | `atoms/pill.tsx` | Status pills and the navigation counter over `ui/badge` |
+| `Surface` | `atoms/surface.tsx` | White card with Ourigin radius and shadow; supports `asChild` |
+| `UserAvatar` | `atoms/user-avatar.tsx` | Photo or initials over `ui/avatar` |
 
 ### Molecules
 
-| Component | File | Client | Purpose |
-| --- | --- | --- | --- |
-| `Callout` | `molecules/callout.tsx` | ✓ | Tinted block in a post with an action (opportunity, profile) |
-| `ContextPanel` | `molecules/context-panel.tsx` | | Card with heading and optional badge or link, used in the context rail |
-| `EmptyState` | `molecules/empty-state.tsx` | | Icon, heading, text and action for empty or placeholder views |
-| `EventItem` | `molecules/event-item.tsx` | ✓ | Time-boxed entry in the "Today" panel |
-| `LinkedWork` | `molecules/linked-work.tsx` | ✓ | Shared work attached to a post, with a photo from `md` up |
-| `NavLink` | `molecules/nav-link.tsx` | ✓ | Sidebar row or bottom-bar tab; tooltip when collapsed |
-| `PageHeading` | `molecules/page-heading.tsx` | | Workspace eyebrow, `h1`, description and an action slot |
-| `PostActions` | `molecules/post-actions.tsx` | ✓ | Reactions, comments, Appreciate, Reply, Save |
-| `PostByline` | `molecules/post-byline.tsx` | ✓ | Author, meta line and the post menu button |
-| `PostText` | `molecules/post-text.tsx` | | Post copy with one line per entry |
-| `PreviewDialog` | `molecules/preview-dialog.tsx` | ✓ | The Ourigin modal, composed from shadcn dialog parts |
-| `RailItem` | `molecules/rail-item.tsx` | ✓ | A row in a context panel that opens its destination |
-| `SearchField` | `molecules/search-field.tsx` | ✓ | Workplace search with ⌘K; collapses to an icon on phones |
+| Component | File | Purpose |
+| --- | --- | --- |
+| `AskOuriginCard` | `molecules/ask-ourigin-card.tsx` | Sidebar card under Following with the Ourigin AI robot; opens the demo dialog (no assistant yet). Robot only with a tooltip when collapsed |
+| `AccountMenu` | `molecules/account-menu.tsx` | The signed-in user at the right of the top bar (avatar only on phones), with the account dropdown: My Profile, Account Settings, Preferences, Log out |
+| `Callout` | `molecules/callout.tsx` | Tinted block in a post with an action (opportunity, profile) |
+| `ContextPanel` | `molecules/context-panel.tsx` | Card with heading and optional badge or link, used in the context rail |
+| `EmptyState` | `molecules/empty-state.tsx` | Icon, heading, text and action for empty or placeholder views |
+| `EventItem` | `molecules/event-item.tsx` | Time-boxed entry in the "Today" panel |
+| `FollowingItem` | `molecules/following-item.tsx` | A quieter sidebar row under "Following" that opens its demo dialog. Icon only with a tooltip when collapsed |
+| `LinkedWork` | `molecules/linked-work.tsx` | Shared work attached to a post, with a photo from `md` up |
+| `NavLink` | `molecules/nav-link.tsx` | Sidebar row or bottom-bar tab; tooltip when collapsed |
+| `PageHeading` | `molecules/page-heading.tsx` | Workspace eyebrow, `h1`, description and an action slot |
+| `PostActions` | `molecules/post-actions.tsx` | Reactions, comments, Appreciate, Reply, Save |
+| `PostByline` | `molecules/post-byline.tsx` | Author, meta line and the post menu button |
+| `PostText` | `molecules/post-text.tsx` | Post copy with one line per entry |
+| `PreviewDialog` | `molecules/preview-dialog.tsx` | The Ourigin modal, composed from shadcn dialog parts |
+| `RailItem` | `molecules/rail-item.tsx` | A row in a context panel that opens its destination |
+| `SearchField` | `molecules/search-field.tsx` | Workplace search with ⌘K; collapses to an icon on phones |
 
 ### Organisms
 
-| Component | File | Client | Purpose |
-| --- | --- | --- | --- |
-| `AppSidebar` | `organisms/app-sidebar.tsx` | ✓ | Collapsible sidebar from `md` up; bottom tab bar on phones |
-| `AppToaster` | `organisms/app-toaster.tsx` | | Brand-styled Sonner toaster |
-| `ComposeDialog` | `organisms/compose-dialog.tsx` | ✓ | Write a post or reply into the preview |
-| `Composer` | `organisms/composer.tsx` | ✓ | The "Share progress…" card and its quick actions |
-| `ContextRail` | `organisms/context-rail.tsx` | | All context panels (attention, today, connected work and more) |
-| `CustomizeFeedDialog` | `organisms/customize-feed-dialog.tsx` | ✓ | Show or hide recognition and profile posts |
-| `CustomizeFeedButton`, `OpenSavedButton` | `organisms/feed-controls.tsx` | ✓ | Feed controls that live outside the feed itself |
-| `Feed` | `organisms/feed.tsx` | ✓ | Tabs, filtered posts, empty message and end-of-feed note |
-| `PostCard` | `organisms/posts/post-card.tsx` | ✓ | Renders each post kind: announcement, recognition, decision, opportunity, profile, draft |
-| `TopBar` | `organisms/top-bar.tsx` | ✓ | Brand, search, notifications, help and profile |
+| Component | File | Purpose |
+| --- | --- | --- |
+| `AppSidebar` | `organisms/app-sidebar.tsx` | Collapsible sidebar from `md` up: logo row with toggle, main and Explore navigation, Following, Ask Ourigin. Its contents stay in view and scroll on their own. Bottom tab bar on phones |
+| `AppToaster` | `organisms/app-toaster.tsx` | Brand-styled Sonner toaster |
+| `ComposeDialog` | `organisms/compose-dialog.tsx` | Write a post or reply into the preview |
+| `Composer` | `organisms/composer.tsx` | The "Share progress…" card and its quick actions |
+| `ContextRail` | `organisms/context-rail.tsx` | All context panels (attention, today, connected work and more) |
+| `CustomizeFeedDialog` | `organisms/customize-feed-dialog.tsx` | Show or hide recognition and profile posts |
+| `CustomizeFeedButton`, `OpenSavedButton` | `organisms/feed-controls.tsx` | Feed controls that live outside the feed itself |
+| `Feed` | `organisms/feed.tsx` | Tabs, filtered posts, empty message and end-of-feed note |
+| `PostCard` | `organisms/posts/post-card.tsx` | Renders each post kind: announcement, recognition, decision, opportunity, profile, draft |
+| `TopBar` | `organisms/top-bar.tsx` | Workspace label (plus the brand symbol on phones), search, notifications, help and the account menu |
 
 ### Templates
 
@@ -116,6 +116,25 @@ Server components can still be passed as `children` into client components:
 | `AppShell` | `templates/app-shell.tsx` | Full-viewport shell: sidebar, top bar, skip link and `<main>` |
 | `HomeTemplate` | `templates/home-template.tsx` | Page heading plus the feed and context rail columns |
 | `SectionTemplate` | `templates/section-template.tsx` | Placeholder page for an unbuilt section |
+
+### Pages
+
+| Component | File | Purpose |
+| --- | --- | --- |
+| `HomePage` | `pages/home-page.tsx` | Reads the feed and context through `lib/data` and renders `HomeTemplate` |
+| `SectionPage` | `pages/section-page.tsx` | Renders `SectionTemplate` for a navigation item |
+| `NotFoundPage` | `pages/not-found-page.tsx` | Branded not-found page outside the workplace shell |
+
+### Routing (`app/`)
+
+These aren't Atomic Design layers. They wire the pages into React Router.
+
+| Component | File | Purpose |
+| --- | --- | --- |
+| `router` | `app/router.tsx` | Route table: layouts, Home, a route per placeholder section, not-found |
+| `RootLayout` | `app/root-layout.tsx` | Tooltip provider, toaster, scroll restoration and the document title |
+| `WorkplaceLayout` | `app/workplace-layout.tsx` | `FeedViewProvider`, `DemoDialogProvider` and `AppShell` around the workplace routes |
+| `PreservedOutlet` | `app/preserved-outlet.tsx` | Keeps recently visited routes mounted in a hidden `<Activity>` ([state and data](state-and-data.md#route-preservation)) |
 
 ### Providers
 
@@ -129,7 +148,7 @@ See [state and data](state-and-data.md) for how these fit together.
 
 ### shadcn primitives in use
 
-`avatar`, `badge`, `button`, `checkbox`, `dialog`, `kbd`, `label`, `sonner`,
+`avatar`, `badge`, `button`, `checkbox`, `dialog`, `dropdown-menu`, `kbd`, `label`, `sonner`,
 `tabs`, `textarea`, `tooltip`. Add more with
 `npx shadcn@latest add <name>`; see
 [adding components](../guides/adding-components.md).

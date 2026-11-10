@@ -1,5 +1,3 @@
-"use client"
-
 import { Icon } from "@/components/atoms/icon"
 import { UserAvatar } from "@/components/atoms/user-avatar"
 import { cn } from "@/lib/utils"
@@ -44,8 +42,8 @@ export function RailItem({
         <span
           className={cn(
             compact
-              ? "text-[11px] md:text-[10px]"
-              : "text-[12px] md:text-[10px] 2xl:text-[11px]",
+              ? "text-body"
+              : "text-body",
             "block leading-[1.5] font-semibold"
           )}
         >
@@ -54,21 +52,21 @@ export function RailItem({
         <span
           className={cn(
             compact
-              ? "text-[10px] md:text-[9px]"
-              : "text-[10px] md:text-[9px] 2xl:text-[10px]",
+              ? "text-detail"
+              : "text-detail",
             "mt-1 block leading-[1.65] text-muted-foreground"
           )}
         >
           {item.description}
         </span>
         {item.tag ? (
-          <span className="mt-1.5 block text-[9px] font-semibold text-primary md:text-[8px] 2xl:text-[9px]">
+          <span className="mt-1.5 block text-caption font-semibold text-primary">
             {item.tag}
           </span>
         ) : null}
       </span>
       {item.actionLabel ? (
-        <span className="mt-1 text-[8px] font-semibold whitespace-nowrap text-primary">
+        <span className="mt-1 text-caption font-semibold whitespace-nowrap text-primary">
           {item.actionLabel}
         </span>
       ) : hideArrow ? null : (

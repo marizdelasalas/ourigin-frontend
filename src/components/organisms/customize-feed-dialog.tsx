@@ -1,5 +1,3 @@
-"use client"
-
 import { PreviewDialog } from "@/components/molecules/preview-dialog"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
@@ -36,7 +34,7 @@ export function CustomizeFeedDialog({
           />
           <Label
             htmlFor={`feed-${option.key}`}
-            className="text-[12px] leading-[1.45] font-normal"
+            className="text-(length:--text-body) leading-[1.45] font-normal"
           >
             {option.label}
           </Label>

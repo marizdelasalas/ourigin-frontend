@@ -2,6 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-09
+- **Amended by:** [ADR-0015](0015-type-scale-tokens.md): small font sizes now use the `text-caption`, `text-detail` and `text-body` tokens, 12px minimum
 - **Origin:** Implementation default
 
 ## Context

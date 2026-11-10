@@ -62,8 +62,6 @@ names) into primitives.
 
 ## 4. Build molecules and organisms
 
-- Start without `"use client"`. Add it only if the component calls a hook or
-  handles events.
 - Accept a `className` prop and merge it last.
 - Read shared state through provider hooks (`useDemoDialog`, `useFeedView`,
   `useHomeFeed`) rather than passing setters through several layers.
@@ -71,8 +69,6 @@ names) into primitives.
   reference data like the signed-in user.
 
 ```tsx
-"use client"
-
 import { Icon, type IconName } from "@/components/atoms/icon"
 import { cn } from "@/lib/utils"
 import { useDemoDialog } from "@/providers/demo-dialog-provider"
@@ -100,7 +96,9 @@ export function StatusRow({ icon, title, className }: StatusRowProps) {
 
 ## 5. Add an icon
 
-Icons live in the `icons` map in `src/components/atoms/icon.tsx`.
+Icons live in the `icons` map in `src/components/atoms/icon.tsx`. Use them for
+navigation and content. Lucide is only for standard controls such as menus,
+chevrons and panel toggles ([ADR-0014](../decisions/0014-lucide-icons-for-standard-controls.md)).
 
 - Draw on a 24×24 grid with filled shapes. Use `opacity` (around 0.15–0.5) for
   the secondary layer, and `fill="none" stroke="currentColor"` only for detail

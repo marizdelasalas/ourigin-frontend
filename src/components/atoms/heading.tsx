@@ -14,7 +14,7 @@ const headingVariants = cva("font-heading font-[650]", {
       recognition:
         "text-[23px] leading-[1.35] tracking-[-0.5px] text-primary md:leading-[1.2] md:tracking-[-0.7px] lg:text-[27px]",
       panel:
-        "text-[21px] leading-[1.3] tracking-[-0.3px] sm:text-[18px] md:text-[15px] 2xl:text-[17px]",
+        "text-[21px] leading-[1.3] tracking-[-0.3px] sm:text-[18px]",
     },
   },
   defaultVariants: {

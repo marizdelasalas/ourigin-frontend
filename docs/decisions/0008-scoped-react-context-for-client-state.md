@@ -2,6 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-09
+- **Amended by:** [ADR-0013](0013-vite-and-react-router-instead-of-nextjs.md): route preservation now comes from `PreservedOutlet`, and the layout providers are mounted in `src/app/workplace-layout.tsx`
 - **Origin:** Implementation default
 
 ## Context

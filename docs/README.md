@@ -13,6 +13,7 @@ same change as the code it describes.
 | Understand how the app is put together | [Architecture overview](architecture/overview.md) |
 | Know which component layer something belongs in | [Components](architecture/components.md) |
 | Find a colour, font size or breakpoint | [Design foundations](design-system/foundations.md), [Responsive layout](design-system/responsive-layout.md) |
+| Work on the designs in Figma | [Figma design system](design-system/figma.md) |
 | Understand why something was decided | [Architecture decisions](decisions/README.md) |
 | Add a component or a page | [Adding components](guides/adding-components.md), [Adding pages](guides/adding-pages.md) |
 
@@ -21,13 +22,14 @@ same change as the code it describes.
 - [getting-started.md](getting-started.md): requirements, scripts, troubleshooting
 - [progress.md](progress.md): current status, next steps and a dated log of changes
 - `architecture/`
-  - [overview.md](architecture/overview.md): stack, rendering model, routing, folder structure
+  - [overview.md](architecture/overview.md): stack, rendering model, routes, folder structure
   - [components.md](architecture/components.md): Atomic Design layers, rules and component inventory
-  - [state-and-data.md](architecture/state-and-data.md): client state, the data access layer, the server/client boundary
+  - [state-and-data.md](architecture/state-and-data.md): data flow, providers, route preservation, the data access layer
 - `design-system/`
   - [foundations.md](design-system/foundations.md): colour, typography, radius, shadow, icons, imagery
   - [responsive-layout.md](design-system/responsive-layout.md): breakpoints and what changes at each
   - [prototype-parity.md](design-system/prototype-parity.md): the design source, how parity is checked, intentional deviations
+  - [figma.md](design-system/figma.md): the Figma library, its variables and components, and how it stays in sync with the code
 - `guides/`
   - [conventions.md](guides/conventions.md): code conventions, gotchas and the pre-merge checklist
   - [adding-components.md](guides/adding-components.md): choosing a layer, wrapping shadcn primitives, adding icons

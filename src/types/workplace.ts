@@ -1,5 +1,3 @@
-import type { StaticImageData } from "next/image"
-
 import type { IconName } from "@/components/atoms/icon"
 
 export type Person = {
@@ -7,7 +5,7 @@ export type Person = {
   name: string
   initials: string
   role?: string
-  avatar?: StaticImageData | string
+  avatar?: string
 }
 
 export type NavItem = {
@@ -16,6 +14,14 @@ export type NavItem = {
   icon: IconName
   count?: number
   description: string
+}
+
+/** Something the user follows, listed under "Following" in the sidebar. */
+export type FollowingItem = {
+  label: string
+  icon: IconName
+  /** Title of the demo dialog it opens (see lib/data/demo-details.ts). */
+  demo: string
 }
 
 export type NavGroup = {
@@ -44,7 +50,7 @@ export type AnnouncementPost = PostBase & {
   linkedWork: {
     title: string
     description: string
-    image: StaticImageData
+    image: string
   }
   reactions: number
   comments: number

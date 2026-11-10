@@ -1,5 +1,3 @@
-"use client"
-
 import { Button } from "@/components/atoms/button"
 import { Icon } from "@/components/atoms/icon"
 import { useFeedView } from "@/providers/feed-view-provider"
@@ -13,7 +11,7 @@ export function CustomizeFeedButton() {
     <Button
       tone="soft"
       onClick={openCustomize}
-      className="flex-none rounded-[12px] p-[11px] text-[10px] shadow-soft md:px-4 md:py-3"
+      className="flex-none rounded-[12px] p-[11px] shadow-soft md:px-4 md:py-3"
     >
       <Icon name="sliders-horizontal" className="size-[15px]" />
       <span className="sr-only md:not-sr-only">Customize feed</span>
@@ -29,7 +27,7 @@ export function OpenSavedButton() {
     <button
       type="button"
       onClick={() => setFilter("saved")}
-      className="text-[10px] font-semibold text-primary"
+      className="text-body font-semibold text-primary"
     >
       Open saved items
     </button>

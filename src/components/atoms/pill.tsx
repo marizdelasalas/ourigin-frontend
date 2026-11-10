@@ -15,9 +15,9 @@ const pillVariants = cva(
         count: "grid size-[21px] place-items-center rounded-full bg-[#f1f5f4] p-0 font-bold",
       },
       size: {
-        sm: "px-2.5 py-[5px] text-[8px]",
-        md: "px-3 py-1.5 text-[8px] md:text-[9px]",
-        count: "text-[10px]",
+        sm: "px-2.5 py-[5px] text-(length:--text-caption)",
+        md: "px-3 py-1.5 text-(length:--text-caption)",
+        count: "text-(length:--text-caption)",
       },
     },
     defaultVariants: {

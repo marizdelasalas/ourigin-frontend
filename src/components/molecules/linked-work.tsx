@@ -1,14 +1,10 @@
-"use client"
-
-import Image, { type StaticImageData } from "next/image"
-
 import { Icon } from "@/components/atoms/icon"
 import { useDemoDialog } from "@/providers/demo-dialog-provider"
 
 type LinkedWorkProps = {
   title: string
   description: string
-  image: StaticImageData
+  image: string
 }
 
 /** Shared work attached to a post, with a photo on larger screens. */
@@ -23,21 +19,21 @@ export function LinkedWork({ title, description, image }: LinkedWorkProps) {
     >
       <Icon name="network" className="size-[19px] text-primary" />
       <span className="min-w-0 flex-1">
-        <span className="text-[10px] font-bold text-primary md:text-[11px]">
+        <span className="text-body font-bold text-primary">
           {title}
         </span>
-        <span className="mt-1 block text-[8px] leading-[1.6] text-muted-foreground md:text-[9px] md:leading-[1.45]">
+        <span className="mt-1 block text-detail text-muted-foreground">
           {description}
         </span>
       </span>
       <Icon name="arrow-up-right" className="mr-2.5 size-[14px] text-primary" />
       <span className="relative hidden h-[62px] w-20 shrink-0 md:block lg:w-[140px]">
-        <Image
+        <img
           src={image}
           alt=""
-          fill
-          sizes="140px"
-          className="object-cover object-left"
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 size-full object-cover object-left"
         />
       </span>
     </button>
