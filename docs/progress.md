@@ -41,6 +41,12 @@ _Last updated: 2026-11-10_
 
 ## Log
 
+### 2026-11-10: Home heading from the navigation data
+
+- Home's title and description now come from its entry in
+  `src/lib/data/navigation.ts`, like the other sections, instead of being typed
+  in `HomeTemplate`. The description there ends with "..." (the owner's edit).
+
 ### 2026-11-10: GitHub repository and GitHub Pages
 
 - Committed the Vite migration and everything after it, and pushed `main` to a

@@ -121,7 +121,7 @@ if it ever returns.
 
 | Component | File | Purpose |
 | --- | --- | --- |
-| `HomePage` | `pages/home-page.tsx` | Reads the feed and context through `lib/data` and renders `HomeTemplate` |
+| `HomePage` | `pages/home-page.tsx` | Reads the feed and context through `lib/data`, and Home's heading and description from its navigation entry, and renders `HomeTemplate` |
 | `SectionPage` | `pages/section-page.tsx` | Renders `SectionTemplate` for a navigation item |
 | `NotFoundPage` | `pages/not-found-page.tsx` | Branded not-found page outside the workplace shell |
 
