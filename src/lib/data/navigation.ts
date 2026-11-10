@@ -7,7 +7,7 @@ export const primaryNavigation: NavGroup = {
       label: "Home",
       icon: "house",
       description:
-        "Your people, shared work and the conversations that move it forward.",
+        "Your people, shared work and the conversations that move it forward...",
     },
     {
       href: "/inbox",
